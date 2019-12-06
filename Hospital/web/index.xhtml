@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Sistema Clínica Veterinária</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="css/cover.css"/> 
+        <link rel="stylesheet" href="../css/cover.css"/> 
+    </h:head>
+    <h:body class="text-center">
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <main role="main" class="inner cover"> 
+                <h1 class="cover-heading">Sistema Clínica Veterinária</h1>
+                <p class="lead">Quer adotar um animalzinho? Veja os animais que temos disponíveis para adoção!</p>
+                <p class="lead">
+                    <h:link class="btn btn-lg btn-secondary" outcome="animaisAdocao" value="Animais para adoção"/>
+                </p>
+            </main>
+            <footer class="mastfoot mt-auto">
+                <div class="inner">
+                    <h:link outcome="login" value="Área administrativa"/>
+                </div>
+            </footer>
+        </div>
+    </h:body>
+</html>

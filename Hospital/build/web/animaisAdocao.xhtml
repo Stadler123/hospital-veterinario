@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Animais para Adoção</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>   
+    </h:head>
+    <h:body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container">
+                <br/> <h1 style="text-align: center;">Sistema Clínica Veterinária</h1> <br/>                
+                <h:link outcome="index" value="Voltar ao menu principal"/> <br/>                
+                <br/>
+                <h:form id="frmTable"> 
+                    <p:dataTable id="tbAnimal" var="animal" value="#{AdocaoControle.lista}" paginator="true" rows="50" emptyMessage="Não há registros na lista" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,15,25,50,100">
+                        <f:facet name="header">Lista de Animais para Adoção</f:facet>
+                        <p:column headerText="Nome" style="width: 15%;" sortBy="#{animal.nome}">	
+                            <h:outputText value="#{animal.nome}"/>
+                        </p:column>
+                        <p:column headerText="Raça" style="width: 15%;" sortBy="#{animal.raca}">
+                            <h:outputText value="#{animal.raca}"/>
+                        </p:column>
+                        <p:column headerText="Espécie" style="width: 15%;" sortBy="#{animal.especie}">
+                            <h:outputText value="#{animal.especie}"/>
+                        </p:column>
+                        <p:column headerText="Idade" style="width: 15%;" sortBy="#{animal.idade}">
+                            <h:outputText value="#{animal.idade}"/>
+                        </p:column>
+                        <p:column headerText="Descrição" style="width: 15%;" sortBy="#{animal.descricao}">
+                            <h:outputText value="#{animal.descricao}"/>
+                        </p:column>                        
+                    </p:dataTable>                    
+                </h:form>
+                <br/>                
+            </div>
+        </main>
+        <br/>
+    </h:body>
+</html>

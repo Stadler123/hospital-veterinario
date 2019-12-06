@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <title>Atendimentos</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <main role="main" class="flex-shrink-0">
+            <div class="container">
+                <br/> <h1 style="text-align: center;">Sistema Clínica Veterinária</h1> <br/>
+                <h:link outcome="cadMedico" value="Cadastro de Médico"/> <br/>
+                <h:link outcome="cadProprietario" value="Cadastro de Tutor"/> <br/>  
+                <h:link outcome="cadAnimal" value="Cadastro de Animal"/> <br/> 
+                <h:link outcome="cadAnimalAdocao" value="Cadastro de Animal para Adoção"/> <br/>
+                <h:link outcome="cadFuncionario" value="Cadastro de Funcionário"/> <br/>
+                <h:link outcome="cadMedMat" value="Cadastro de Medicamentos/Materiais"/> <br/>                   
+                <h:form id="frmCad">
+                    <br/>
+                    <h3>Atendimentos</h3>
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="Animal:"/>
+                        <p:selectOneMenu id="comboAnimal" converter="animalConverter" value="#{AtendimentoControle.animalSelecionado}" required="true" requiredMessage="Selecione um animal">
+                            <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                            <f:selectItems value="#{AtendimentoControle.animais}" var="item" itemValue="#{item}" itemLabel="#{item.nome}"/>  
+                        </p:selectOneMenu> 
+                        <h:outputLabel value="Médico:"/>
+                        <p:selectOneMenu id="comboMedico" converter="MedicoConverter" value="#{AtendimentoControle.medicoSelecionado}" required="true" requiredMessage="Selecione um medico">
+                            <f:selectItem itemValue="#{null}" itemLabel="Selecione uma opção"/>
+                            <f:selectItems value="#{AtendimentoControle.medicos}" var="item" itemValue="#{item}" itemLabel="#{item.nome}"/>  
+                        </p:selectOneMenu> 
+                        <h:outputLabel value="Anotações:"/>
+                        <h:inputText id="Anotacoes" value="#{AtendimentoControle.atendimento.anotacoes}"/>        
+                        <h:outputLabel value="Data:"/>
+                        <p:calendar id="Data" value="#{AtendimentoControle.atendimento.data}" pattern="dd/MM/yyyy" locale="pt"/>        
+                        <h:outputLabel value="Valor:"/>
+                        <h:inputText id="Valor" value="#{AtendimentoControle.atendimento.valor}"/>                
+                    </p:panelGrid> <br/>
+                    <p:commandButton class="save-btn" value="Realizar Atendimento" action="#{AtendimentoControle.incluir()}" update="frmCad, :frmTable"/>  
+                </h:form>
+                <br/>
+                <h:form id="frmTable">
+                    <p:dataTable id="tbAtndmto" var="atndmto" value="#{AtendimentoControle.lista}" paginator="true" rows="50" emptyMessage="Não há registros na lista" rowsPerPageTemplate="10,15,25,50,100" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                        <f:facet name="header">Lista de Atendimentos</f:facet>
+                        <p:column headerText="Código" style="width: 10%;" sortBy="#{atndmto.codigo}">
+                            <h:outputText value="#{atndmto.codigo}"/>
+                        </p:column>
+                        <p:column headerText="Animal" style="width: 15%;" sortBy="#{atndmto.animal.nome}">	
+                            <h:outputText value="#{atndmto.animal.nome}"/>
+                        </p:column>
+                        <p:column headerText="Médico" style="width: 15%;" sortBy="#{atndmto.medico.nome}">
+                            <h:outputText value="#{atndmto.medico.nome}"/>
+                        </p:column>  
+                        <p:column headerText="Anotações" style="width: 25%;" sortBy="#{atndmto.anotacoes}">
+                            <h:outputText value="#{atndmto.anotacoes}"/>
+                        </p:column>
+                        <p:column headerText="Data" style="width: 15%;" sortBy="#{atndmto.data}">
+                            <h:outputText value="#{atndmto.data}"/>
+                        </p:column>
+                        <p:column headerText="Valor" style="width: 15%;" sortBy="#{atndmto.valor}">
+                            <h:outputText value="#{atndmto.valor}"/>
+                        </p:column>            
+                    </p:dataTable>
+                </h:form>
+                <br/>
+                <h:form id="frmSair">
+                    <p:commandButton action="#{loginControle.actionLogout()}" value="Sair"/>
+                </h:form>   
+            </div>
+        </main>
+        <br/>
+    </h:body>
+</html>
